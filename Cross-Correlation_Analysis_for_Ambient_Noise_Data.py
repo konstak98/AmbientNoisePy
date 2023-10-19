@@ -28,20 +28,20 @@ def compute_cross_correlations(data_dir, day0, dayn):
         for day in range(ndays):
             d0 = day0 + day
             true_day = d0
-            flnm0 = f'{sta1}.2013.{d0:03d}.00.00.00.EHZ.D.sac'
+            flnm0 = '{}.2013.{:03d}.00.00.00.EHZ.D.sac'.format(sta1, d0)
 
             for sta2 in sta_id_list:
                 sta2_int = int(sta2)
                 if sta2_int < sta1_int or sta1 == sta2:
                     continue
 
-                flnm1 = f'{sta2}.2013.{d0:03d}.00.00.00.EHZ.D.sac'
+                flnm1 = '{}.2013.{:03d}.00.00.00.EHZ.D.sac'.format(sta2, d0)
 
                 filename1 = os.path.join(data_dir, flnm0)
                 filename2 = os.path.join(data_dir, flnm1)
 
                 if not os.path.exists(filename2):
-                    print(f'*** STATION {sta2} for DAY {d0:03d} does not exist.')
+                    print('*** STATION {} for DAY {:03d} does not exist.'.format(sta2, d0))
                     continue
 
                 st1 = read(filename1)
